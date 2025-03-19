@@ -1,0 +1,13 @@
+**/.env
+**/.DS_Store
+
+dist/
+node_modules/
+./packages/agent/node_modules/
+**/tsconfig.tsbuildinfo
+.vscode/*
+
+*.log
+logs/*
+
+**/chat-history/
