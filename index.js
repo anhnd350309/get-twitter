@@ -12,12 +12,14 @@ const twitterClient = new TwitterApi({
     appSecret: process.env.TWITTER_APP_SECRET,
 });
 
-const callbackUrl = 'http://localhost:3000/auth/twitter/callback';
 let _oauth_token_secret = '';
 
 // Step 1: Redirect user to Twitter login
 app.get('/auth/twitter', async (req, res) => {
     try {
+        const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+        const host = req.headers['x-forwarded-host'] || req.get('host');
+        const callbackUrl = `${protocol}://${host}/auth/twitter/callback`;
         const { url, oauth_token, oauth_token_secret } = await twitterClient.generateAuthLink(
             callbackUrl,
             { linkMode: 'authorize' },
