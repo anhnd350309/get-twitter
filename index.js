@@ -52,6 +52,11 @@ app.get('/auth/twitter/callback', async (req, res) => {
         const { accessToken, accessSecret, screenName, userId } = await client.login(oauth_verifier);
 
         // Display credentials (store them in a database instead for security)
+        console.log('Access Token:', accessToken);
+        console.log('Access Secret:', accessSecret);
+        console.log('User ID:', userId);
+        console.log('Username:', screenName);
+
         res.send(`
       <h1>Twitter Auth Successful! 🎉</h1>
       <p><b>Access Token:</b> ${accessToken}</p>
